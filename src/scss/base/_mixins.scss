@@ -1,0 +1,16 @@
+/* RESPONSIVE */
+@mixin tablet {
+    @media(min-width: 481px){ 
+        @content;
+    }
+}
+@mixin laptop {
+    @media(min-width: 1024px){ 
+        @content;
+    }
+}
+@mixin desktop {
+    @media(min-width: 1500px){
+        @content;
+    }
+}

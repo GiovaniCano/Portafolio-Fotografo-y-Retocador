@@ -1,0 +1,47 @@
+@use "base/variables" as v; @use "base/mixins" as m;
+
+/* 10px = 1rem */
+html { font-size: 62.5%; box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+body{ 
+    font-size: 16px;
+    font-family: v.$font;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin: 0 0 2rem 0;
+}
+h1 {
+    font-size: calc(4rem + v.$fontSizeAdjustment);
+}
+h2 {
+    font-size: calc(3.4rem + v.$fontSizeAdjustment);
+}
+h3 {
+    font-size: calc(2.8rem + v.$fontSizeAdjustment);
+}
+p, a, li, span {
+    font-size: calc(2rem + v.$fontSizeAdjustment);
+    letter-spacing: 0.4px;
+    line-height: 125%;
+}
+
+p{
+    margin: 1.4rem 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+img {
+    display: block;
+    width: 100%;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 2rem 0;
+    max-width: 1200px;
+    width: 97%;
+}
