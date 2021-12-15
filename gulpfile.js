@@ -16,32 +16,42 @@ const ts = require("gulp-typescript")
 const terser = require("gulp-terser-js")
 
 const paths = {
-    imgFotoSrc : "./src/img/foto/*.jpg",
-    imgBase : "./src/",
-    imgDest : "./build/",
-    imgRetoqueSrc : "./src/img/retoque/*.jpg",
+    srcFoto : "./src/img/foto/**/*.jpg",
+    destFoto : "./build/img/foto/",
 
-    jsSrc : "./src/ts/**/*.ts",
-    jsDest : "./build/js/",
+    srcFotoV : "./src/img/foto/v/*.jpg",
+    destFotoV : "./build/img/foto/v/",
 
-    cssSrc : "./src/scss/**/*.scss",
-    cssDest : "./build/css/",
+    srcFotoHC : "./src/img/foto/hc/*.jpg",
+    destFotoHC : "./build/img/foto/hc/",
+    
+    srcRet : "./src/img/retoque/*.jpg",
+    destRet : "./build/img/retoque/",
+
+    srcJS : "./src/ts/**/*.ts",
+    destJS : "./build/js/",
+
+    srcCSS : "./src/scss/**/*.scss",
+    destCSS : "./build/css/"
 }
 
 function imgFotoBig(done) {
     let i = 1
-    src( paths.imgFotoSrc, {base: paths.imgBase} )
+    src( paths.srcFoto )
         .pipe( plumber() )
-        .pipe( rename(path=>path.basename = "img-" + i++ + "-b") )
+        .pipe( rename(path=>{
+            path.basename = "img-" + i++ + "-b"
+            path.dirname = ""
+        }) )
         .pipe( imagemin() )
-        .pipe( dest( paths.imgDest ) ) //jpg
+        .pipe( dest( paths.destFoto ) ) //jpg
         .pipe( webp() )
-        .pipe( dest( paths.imgDest ) ) //webp
+        .pipe( dest( paths.destFoto ) ) //webp
     done()
 }
 function imgFotoMedium(done) {
     let i = 1
-    src( paths.imgFotoSrc, {base: paths.imgBase} )
+    src( paths.srcFoto )
         .pipe( plumber() )
         .pipe( imageResize({
             width : 500,
@@ -49,32 +59,52 @@ function imgFotoMedium(done) {
             upscale : false,
             imageMagick : true
         }) )
-        .pipe( rename(path=>path.basename = "img-" + i++ + "-m") )
+        .pipe( rename(path=>{
+            path.basename = "img-" + i++ + "-m"
+            path.dirname = ""
+        }) )
         .pipe( imagemin() )
-        .pipe( dest( paths.imgDest ) ) //jpg
+        .pipe( dest( paths.destFoto ) ) //jpg
         .pipe( webp() )
-        .pipe( dest( paths.imgDest ) ) //webp
+        .pipe( dest( paths.destFoto ) ) //webp
     done()
 }
-function imgFotoSmall(done) {
+function imgFotoIndexV(done) { //small vertical
     let i = 1
-    src( paths.imgFotoSrc, {base: paths.imgBase} )
+    src( paths.srcFotoV )
         .pipe( plumber() )
         .pipe( imageResize({
-            width : 300,
+            width : 340,
             crop : false,
             upscale : false,
             imageMagick : true
         }) )
-        .pipe( rename(path=>path.basename = "img-" + i++ + "-s") )
+        .pipe( rename(path=>path.basename = "img-" + i++) )
         .pipe( imagemin() )
-        .pipe( dest( paths.imgDest ) ) //jpg
+        .pipe( dest( paths.destFotoV ) ) //jpg
         .pipe( webp() )
-        .pipe( dest( paths.imgDest ) ) //webp
+        .pipe( dest( paths.destFotoV ) ) //webp
+    done()
+}
+function imgFotoIndexHC(done) { //small vertical
+    let i = 1
+    src( paths.srcFotoHC )
+        .pipe( plumber() )
+        .pipe( imageResize({
+            width : 340,
+            crop : false,
+            upscale : false,
+            imageMagick : true
+        }) )
+        .pipe( rename(path=>path.basename = "img-" + i++) )
+        .pipe( imagemin() )
+        .pipe( dest( paths.destFotoHC ) ) //jpg
+        .pipe( webp() )
+        .pipe( dest( paths.destFotoHC ) ) //webp
     done()
 }
 function imgRetoque(done) {
-    src( paths.imgRetoqueSrc, {base: paths.imgBase} )
+    src( paths.srcRet )
         .pipe( plumber() )
         .pipe( imageResize({
             width : 600,
@@ -83,26 +113,25 @@ function imgRetoque(done) {
             imageMagick : true
         }) )
         .pipe( imagemin() )
-        .pipe( dest( paths.imgDest ) ) //jpg
+        .pipe( dest( paths.destRet ) ) //jpg
         .pipe( webp() )
-        .pipe( dest( paths.imgDest ) ) //webp
+        .pipe( dest( paths.destRet ) ) //webp
     done()
 }
 
 function css(done) {
-    src( paths.cssSrc )   
+    src( paths.srcCSS )   
         .pipe( plumber() )
         .pipe( sourcemaps.init() )
         .pipe( sass() )
         .pipe( postcss([autoprefixer(), cssnano()]) )
         .pipe( rename({basename: "bundle.min"}) )
         .pipe( sourcemaps.write(".") )
-        .pipe( dest( paths.cssDest ) )
+        .pipe( dest( paths.destCSS ) )
     done()
 }
-
 function js(done) {
-    src( paths.jsSrc )
+    src( paths.srcJS )
         .pipe( plumber() )
         .pipe( sourcemaps.init() )
         .pipe( ts({
@@ -112,7 +141,7 @@ function js(done) {
         }) )
         .pipe( terser() )
         .pipe( sourcemaps.write(".") )
-        .pipe( dest( paths.jsDest ) )
+        .pipe( dest( paths.destJS ) )
     done()
 }
 
@@ -122,7 +151,7 @@ function watchFiles(done) {
     done()
 }
 
-exports.img = series(imgFotoBig, imgFotoMedium, imgFotoSmall, imgRetoque)
+exports.img = series(imgFotoBig, imgFotoMedium, imgFotoIndexV, imgFotoIndexHC, imgRetoque)
 
 exports.css = css
 exports.js = js
