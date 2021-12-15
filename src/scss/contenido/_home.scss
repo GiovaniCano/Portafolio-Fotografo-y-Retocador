@@ -1,11 +1,16 @@
-// #index-body {overflow: hidden;}
-#index-background {
+#index-body {
+    overflow: hidden;
     background-color: rgb(255, 127, 155);
     min-height: 100vh;
+    position: relative;
 
     #index-overlay {
         height: 100vh;
+        width: 100%;
         background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     main {
         display: flex;
@@ -15,7 +20,7 @@
 
         #index-tittle {
             width: 100%;
-            background-color: rgb(25, 25, 25);
+            background-color: rgba(25, 25, 25, 0.9);
             color: white;
             padding: 2rem;
 
@@ -46,5 +51,9 @@
                 }
             }
         }
+    }
+    #index-gallery, noscript {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
     }
 }

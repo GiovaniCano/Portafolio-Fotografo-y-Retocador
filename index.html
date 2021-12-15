@@ -14,21 +14,30 @@
     <script src="/build/js/bundle.min.js"></script>
 </head>
 <body id="index-body">
-    <div id="index-background">
-        <div id="index-overlay">
-            <main>
-                <div id="index-tittle">
-                    <!-- <h1>Giovani Cano</h1> -->
-                    <h1>Giovani Cano</h1>
-                    <nav class="centered">
-                        <a href="/fotografia.html" title="Fotografía">Fotografía</a>
-                        <a href="/retoque.html" title="Retoque">Retoque</a>
-                        <a href="/contacto.html" title="Contacto">Contacto</a>
-                    </nav>
-                </div>
-            </main>
-        </div>
-        <!-- images -->
+    <div id="index-overlay">
+        <main>
+            <div id="index-tittle">
+                <!-- <h1>Giovani Cano</h1> -->
+                <h1>Giovani Cano</h1>
+                <nav class="centered">
+                    <a href="/fotografia.html" title="Fotografía">Fotografía</a>
+                    <a href="/retoque.html" title="Retoque">Retoque</a>
+                    <a href="/contacto.html" title="Contacto">Contacto</a>
+                </nav>
+            </div>
+        </main>
+    </div>    
+    <div id="index-gallery">
+        <!-- images -->    
     </div>
+    <noscript>
+        <div class="index-column">
+            <picture>
+                <source srcset="/build/img/foto/v/img-1.webp">
+                <img src="/build/img/foto/v/img-1.jpg" loading="lazy">
+            </picture>
+        </div>
+
+    </noscript>
 </body>
 </html>
