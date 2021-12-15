@@ -1,0 +1,50 @@
+// #index-body {overflow: hidden;}
+#index-background {
+    background-color: rgb(255, 127, 155);
+    min-height: 100vh;
+
+    #index-overlay {
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        #index-tittle {
+            width: 100%;
+            background-color: rgb(25, 25, 25);
+            color: white;
+            padding: 2rem;
+
+            h1 { 
+                font-size: 5rem;
+                letter-spacing: 2px;
+            }
+            nav {
+                width: 50rem;
+                display: flex;
+                justify-content: space-around;
+
+                a {
+                    font-size: 2.7rem;
+                    letter-spacing: 2px;
+
+                    &:hover {
+                        font-weight: bold;
+                        color: rgb(255, 211, 211);
+                    }
+                    &:before {
+                        display: block;
+                        content: attr(title);
+                        font-weight: 700;
+                        height: 0;
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}
