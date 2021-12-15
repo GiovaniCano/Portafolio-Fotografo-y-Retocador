@@ -1,13 +1,13 @@
 function indexGallery() {
     const totalVimages = 21
     const totalHimages = 21
-    const totalImages = totalVimages+totalHimages
     
     const imgVarray = shuffleArray(makeImagesArray("v", totalVimages))
     const imgHarray = shuffleArray(makeImagesArray("hc", totalHimages))
 
     const gallery = document.getElementById("index-gallery")
     loadImageColumns()
+    window.onresize = loadImageColumns
 
     /*/// functions of indexGallery() ///*/
     function loadImageColumns() {
@@ -17,41 +17,39 @@ function indexGallery() {
         // const width = window.outerWidth
         const width = window.innerWidth //debug?
         switch (true) {
-            case width > 0:                
+            case width >= 1500: //desktop
                 makeColumns(7)
-                break;        
-            default:
+                break;
+            case width >= 1024: //laptop
+                makeColumns(6)
+                break;
+            case width >= 481: //tablet
+                makeColumns(4)
+                break;
+            default: //movil
+                makeColumns(3)
                 break;
         }
 
         /*/// functions of loadImageColumns() ///*/
         function makeColumns(numberOfColumns:number) {
             /* prepare array of arrays */
-            const columns:any[] = []
+            let columns:any[] = []
             for (let i = 0; i < numberOfColumns; i++) {
                 columns[i] = []
             }
 
             /* filling arrays */
-            const vPerColumn = Math.ceil(totalVimages/numberOfColumns)
-            const hPerColumn = Math.ceil(totalHimages/numberOfColumns)
-            let v = 0, h = 0
-            for (let i = 0; i < numberOfColumns; i++) {
-                for (let j = 1; j <= vPerColumn; j++) { // v                    
-                    columns[i].push(imgVarray[v])
-                    v++
-                }
-            }
-            for (let i = numberOfColumns-1; i >= 0; i--) {
-                for (let j = 1; j <= hPerColumn; j++) { // h                  
-                    columns[i].push(imgHarray[h])
-                    h++
-                }
-            }
+            fillArrays(imgVarray)
+            fillArrays(imgHarray, true)
 
+            /* shuffle again */
+            columns = shuffleArray(columns)
             columns.forEach((column, index)=>{
                 columns[index] = shuffleArray(column)
             })
+
+            /* create HTML */
             columns.forEach(column=>{
                 const div = document.createElement("div")
                 div.classList.add("index-column")
@@ -63,6 +61,23 @@ function indexGallery() {
                 //@ts-ignore
                 gallery.appendChild(div)
             })
+
+            /*/// functions of makeColumns() ///*/
+            function fillArrays(array:any[], reverse = false) {
+                if(reverse) { //max to 0 (<--)
+                    let j = columns.length-1
+                    for(let i = 0; i < array.length; i++) {
+                        columns[j].push(array[i])
+                        j > 0 ? j-- : j=columns.length-1
+                    }
+                } else { //0 to max (-->)
+                    let j = 0
+                    for(let i = 0; i < array.length; i++) {
+                        columns[j].push(array[i])
+                        j < columns.length-1 ? j++ : j=0
+                    }
+                }
+            }
         }
     }
     function makeImagesArray(folder:string, times:number) {
@@ -73,6 +88,7 @@ function indexGallery() {
             `
             const img = document.createElement("img")
             img.src = `/build/img/foto/${folder}/img-${i}.jpg`
+            img.loading = "lazy"
 
             const picture = document.createElement("picture")
             picture.appendChild(source)

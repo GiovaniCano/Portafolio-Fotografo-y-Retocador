@@ -1,3 +1,4 @@
+@use "base/mixins" as m;
 #index-body {
     overflow: hidden;
     background-color: rgb(255, 127, 155);
@@ -36,6 +37,7 @@
                 a {
                     font-size: 2.7rem;
                     letter-spacing: 2px;
+                    text-align: center;
 
                     &:hover {
                         font-weight: bold;
@@ -43,7 +45,7 @@
                     }
                     &:before {
                         display: block;
-                        content: attr(title);
+                        content: attr(data-hover);
                         font-weight: 700;
                         height: 0;
                         visibility: hidden;
@@ -52,8 +54,18 @@
             }
         }
     }
+
     #index-gallery, noscript {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        @include m.tablet {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @include m.laptop {
+            grid-template-columns: repeat(6, 1fr);
+        }
+        @include m.desktop {
+            grid-template-columns: repeat(7, 1fr);
+        }
     }
 }
