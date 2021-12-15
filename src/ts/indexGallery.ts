@@ -14,13 +14,12 @@ function indexGallery() {
         //@ts-ignore
         gallery.innerHTML = ""
 
-        // const width = window.outerWidth
-        const width = window.innerWidth //debug?
+        const width = window.innerWidth
         switch (true) {
             case width >= 1500: //desktop
                 makeColumns(7)
                 break;
-            case width >= 1024: //laptop
+            case width >= 1025: //laptop
                 makeColumns(6)
                 break;
             case width >= 481: //tablet

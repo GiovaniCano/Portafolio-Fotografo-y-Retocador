@@ -1,7 +1,7 @@
 @use "base/mixins" as m;
 #index-body {
     overflow: hidden;
-    background-color: rgb(255, 127, 155);
+    background-color: rgb(202, 33, 33);
     min-height: 100vh;
     position: relative;
 
@@ -21,7 +21,7 @@
 
         #index-tittle {
             width: 100%;
-            background-color: rgba(25, 25, 25, 0.9);
+            background-color: rgba(25, 25, 25, 0.92);
             color: white;
             padding: 2rem;
 
@@ -41,7 +41,7 @@
 
                     &:hover {
                         font-weight: bold;
-                        color: rgb(255, 211, 211);
+                        color: rgb(255, 96, 96);
                     }
                     &:before {
                         display: block;
@@ -56,6 +56,7 @@
     }
 
     #index-gallery, noscript {
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         @include m.tablet {
@@ -67,5 +68,15 @@
         @include m.desktop {
             grid-template-columns: repeat(7, 1fr);
         }
+
+        img {
+            animation: imagePadding .5s;
+            animation-timing-function: linear;
+        }
     }
+}
+
+@keyframes imagePadding {
+    from {padding: 1rem;}
+    to {padding: 0rem;}
 }
