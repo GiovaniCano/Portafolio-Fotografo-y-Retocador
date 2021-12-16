@@ -14,3 +14,14 @@
         @content;
     }
 }
+
+@mixin custom($min-width) {
+    @media(min-width: $min-width){
+        @content;
+    }
+}
+@mixin fold {
+    @media(max-width: 319px){
+        @content;
+    }
+}
