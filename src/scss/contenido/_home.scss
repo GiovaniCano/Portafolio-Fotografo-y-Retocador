@@ -1,9 +1,16 @@
 @use "base/mixins" as m;
 #index-body {
-    overflow: hidden;
-    background-color: rgb(202, 33, 33);
+    // overflow: hidden;
     min-height: 100vh;
     position: relative;
+
+    background-color: rgb(24, 24, 24);
+    animation: galleryBgColor .8s;
+    animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    @keyframes galleryBgColor {
+        from{background-color: rgb(202, 33, 33);}
+        to {background-color: rgb(24, 24, 24);}
+    }
 
     #index-overlay {
         height: 100vh;
@@ -21,7 +28,7 @@
 
         #index-tittle {
             width: 100%;
-            background-color: rgba(25, 25, 25, 0.92);
+            background-color: rgba(27, 16, 16, 0.92);
             color: white;
             padding: 2rem;
 
@@ -70,13 +77,14 @@
         }
 
         img {
-            animation: imagePadding .5s;
+            animation: imagePadding .8s;
             animation-timing-function: linear;
+            @keyframes imagePadding {
+                from {padding: 1rem;}
+                to {padding: 0rem;}
+            }
         }
     }
 }
 
-@keyframes imagePadding {
-    from {padding: 1rem;}
-    to {padding: 0rem;}
-}
+

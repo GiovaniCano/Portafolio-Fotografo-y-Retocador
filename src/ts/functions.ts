@@ -1,3 +1,7 @@
+function getRandomNumber(min:number, max:number):number {
+    return Math.floor(Math.random() * (max - min) + min)
+}
+
 function shuffleArray(array:any[]) {
     let newArray = [...array];
     let currentIndex = newArray.length;
