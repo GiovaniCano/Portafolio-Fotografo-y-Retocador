@@ -1,3 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(){
-    console.log("uwu")
+    console.log("Desarrollador: "+"https://github.com/GiovaniCano")
+    indexGallery()
 })

@@ -5,12 +5,23 @@
     }
 }
 @mixin laptop {
-    @media(min-width: 1024px){ 
+    @media(min-width: 1025px){ 
         @content;
     }
 }
 @mixin desktop {
     @media(min-width: 1500px){
+        @content;
+    }
+}
+
+@mixin custom($min-width) {
+    @media(min-width: $min-width){
+        @content;
+    }
+}
+@mixin fold {
+    @media(max-width: 319px){
         @content;
     }
 }
