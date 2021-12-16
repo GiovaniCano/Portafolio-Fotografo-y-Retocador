@@ -1,4 +1,5 @@
 @use "base/mixins" as m;
+@use "base/variables" as v;
 #index-body {
     overflow: hidden;
     min-height: 100vh;
@@ -15,7 +16,7 @@
     #index-overlay {
         height: 100vh;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.35);
+        background-color: rgba(0, 0, 0, 0.33);
         position: absolute;
         top: 0;
         left: 0;
@@ -30,7 +31,7 @@
             width: 100%;
             color: white;
             padding: 2rem;
-            background-color: rgba(26, 11, 11, 0.9);
+            background-color: v.$mainColor;
             backdrop-filter: blur(4px);
             box-shadow: 0 6px 12px 4px rgba(0, 0, 0, 0.35);
 
@@ -47,39 +48,12 @@
                 }
             }
             nav {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
                 @include m.custom(540px) {
-                    width: 50rem;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-around;                    
+                    width: 48rem;                  
                 }
-
                 a {
                     font-size: 2.7rem;
                     letter-spacing: 2px;
-                    text-align: center;
-                    &:not(:last-child) {
-                        margin-bottom: 1rem;
-                    }
-                    @include m.tablet {
-                        margin: 0 !important;
-                    }
-
-                    &:hover {
-                        font-weight: bold;
-                        color: rgb(255, 96, 96);
-                    }
-                    &:before {
-                        display: block;
-                        content: attr(data-hover);
-                        font-weight: 700;
-                        height: 0;
-                        visibility: hidden;
-                    }
                 }
             }
         }
@@ -106,23 +80,6 @@
                 from {padding: 1rem;}
                 to {padding: 0rem;}
             }
-        }
-    }
-    #noscript-alert {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        background-color: rgba(48, 45, 2, 0.795);
-        padding: 0.3rem 1rem;
-        text-align: center;
-        z-index: 99;
-        p {
-            margin: 0;
-            font-size: 2.3rem;
-            color: rgb(233, 233, 15);
-        }
-        @include m.laptop {
-            padding: 1.8rem;
         }
     }
 }
