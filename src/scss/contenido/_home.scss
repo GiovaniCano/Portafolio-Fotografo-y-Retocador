@@ -36,8 +36,7 @@
             box-shadow: 0 6px 12px 4px rgba(0, 0, 0, 0.35);
 
             h1 { 
-                font-size: 280%;
-                letter-spacing: 2px;
+                font-size: 5rem;
                 margin-bottom: 1rem;
                 @include m.tablet() {
                     margin-bottom: 2rem;
