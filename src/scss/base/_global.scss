@@ -78,7 +78,7 @@ nav {
             }
         }
 
-        &:hover {
+        &:hover, &#active-section {
             font-weight: bold;
             color: rgb(255, 96, 96);
         }
