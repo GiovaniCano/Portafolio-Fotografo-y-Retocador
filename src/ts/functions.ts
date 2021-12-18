@@ -15,7 +15,3 @@ function shuffleArray(array:any[]) {
     }
     return newArray;
 }
-
-function cl(foo:any) {
-    console.log(foo)
-}

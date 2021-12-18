@@ -7,6 +7,7 @@ html { font-size: 62.5%; box-sizing: border-box; }
 body{ 
     font-size: 16px;
     font-family: v.$font;
+    background-color: rgb(35, 35, 35);
 }
 
 h1, h2, h3 {
@@ -117,4 +118,8 @@ nav {
 
 .hidden {
     display: none;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
