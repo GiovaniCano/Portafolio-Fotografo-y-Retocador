@@ -80,7 +80,7 @@ nav {
 
         &:hover, &#active-section {
             font-weight: bold;
-            color: rgb(255, 96, 96);
+            color: v.$mainColorHover;
         }
 
         &:before {
@@ -118,9 +118,15 @@ nav {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
+}
+.invisible {
+    visibility: hidden !important;
+}
+.transparent {
+    opacity: 0 !important;
 }
 
 .no-scroll {
-    overflow: hidden;
+    overflow: hidden !important;
 }
