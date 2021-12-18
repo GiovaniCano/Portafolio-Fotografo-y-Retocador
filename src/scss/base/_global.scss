@@ -98,6 +98,7 @@ nav {
     bottom: 0;
     width: 100%;
     background-color: rgba(48, 45, 2, 0.795);
+    backdrop-filter: blur(3px);
     padding: 0.3rem 1rem;
     text-align: center;
     z-index: 99;

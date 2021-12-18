@@ -1,0 +1,32 @@
+@use "base/mixins" as m;
+
+#body-retoque {
+#content, #noscript-content {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 2000px;
+    margin: 0 auto;
+    img {
+        user-select: none;
+    }
+
+    div {
+        padding: 1.5rem .5rem;
+        margin: auto;
+        @include m.tablet {
+            width: 50%;
+            padding: 3rem 4rem;
+        }
+        @include m.laptop {
+            width: 33.33%;
+        }
+
+        img {
+            box-shadow: 6px 6px 15px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        // &:nth-last-of-type(2), &:nth-last-of-type(3) {
+        //     width: 50%;
+        // }
+    }
+}}
