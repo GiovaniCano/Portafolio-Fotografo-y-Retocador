@@ -1,6 +1,6 @@
 @use "base/mixins" as m;
 
-#body-fotografia #content {
+#body-fotografia #content, #body-fotografia #noscript-content {
     max-width: 2000px;
     margin: 0 auto;
     padding: .3rem;
