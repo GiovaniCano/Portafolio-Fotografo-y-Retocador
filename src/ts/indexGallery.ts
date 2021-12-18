@@ -21,8 +21,7 @@ function indexGallery() {
 
     /*/// functions of indexGallery() ///*/
     function loadImageColumns() {
-        //@ts-ignore
-        gallery.innerHTML = ""
+        gallery!.innerHTML = ""
 
         const width = window.innerWidth
         switch (true) {
