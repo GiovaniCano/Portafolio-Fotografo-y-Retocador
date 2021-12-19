@@ -66,7 +66,7 @@
                         height: 6rem;
                         top: calc(50% - 3rem);
                         left: calc(-3rem + 1.5px);
-                        transition: opacity .25s ease;
+                        transition: opacity .3s ease;
 
                         display: flex;
                         svg {
@@ -121,7 +121,7 @@
                     padding: .6rem .8rem .6rem .3rem;
                 }
 
-                &:hover {
+                &:hover, &.icon-active {
                     cursor: pointer;
                     border-color: rgba(255, 126, 126, 0.267);
                     stroke: v.$mainColorHover;
