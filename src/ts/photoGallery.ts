@@ -61,7 +61,7 @@ function photoGallery() {
         imgContainer.classList.add("fullsize-image")
         imgContainer.onclick = e=> {
             //@ts-ignore
-            e.currentTarget.remove()            
+            e.currentTarget.remove()
             document.body.classList.remove("no-scroll")
         }
         imgContainer.appendChild(picture)

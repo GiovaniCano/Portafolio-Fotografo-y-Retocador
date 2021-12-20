@@ -2,13 +2,12 @@
 @use "base/variables" as v;
 
 #body-retoque {
-#content, #noscript-content {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 2000px;
-    margin: 0 auto;
-    img {
-        user-select: none;
+    img { user-select: none; }
+    #content {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 2000px;
+        margin: 0 auto;
     }
 
     .rp-wrapper {
@@ -26,6 +25,12 @@
             padding: 2rem 1rem 3rem 2rem;
             &:nth-of-type(3n) {
                 padding-right: 2rem;
+            }
+        }
+        &.horizontal {
+            width: 100%;
+            @include m.laptop {
+                width: 46%;
             }
         }
 
@@ -87,12 +92,6 @@
                 opacity: 0;
             }
         }
-        &.vertical {
-            width: 100%;
-            @include m.laptop {
-                width: 46%;
-            }
-        }
                 
         .image-icons {
             height: 100%;
@@ -136,8 +135,53 @@
                         margin-top: -.8rem;
                     }
                 }
-
             }
         }
+    } //.rp-wrapper
+
+    .fullsize-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 99;
+
+        // .divazo {
+            // height: 100%;
+            // width: 100%;
+            // img {
+            //     height: 100%;
+
+            // }
+            .rp-wrapper {
+                padding: 1rem !important;
+                background-color: red;
+                height: 100%;
+                width: 50%;
+                // max-height: 97vh;
+                // @include m.tablet {
+                //     width: 100%;
+                // }
+                // @include m.laptop {
+                // }
+                // &.horizontal {
+                //     width: 100%;
+                //     @include m.laptop {
+                //         width: 46%;
+                //     }
+                // }
+                img {
+                    // width: 100%;
+                    min-height: 100%;
+                }
+            }
+        // }
     }
-}}
+}
