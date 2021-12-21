@@ -1,14 +1,30 @@
 function retoque() {
-    const imagesIds:any[] = [ // [ imgId, imgIDzoom, imgIDmask, isHorizontal ]
-        [9, 0, 9, false], // isabel
-        [3, 0, 3, false], // flores
-        [2, 1, 1, false], // cel
-        [7, 0, 7, true], // labios rojos
-        [8, 0, 8, true], // ojos
-        [5, 4, 4, false], // modelo 1
-        [6, 0, 0, true], // labios azules
-        [10, 0, 0, true] // modelo 0
-    ]
+    if(document.body.id !== "body-retoque") return;
+
+    let imagesIds:any[] = []
+    if(window.innerWidth >= 1025) {
+        imagesIds = [ // [ imgId, imgIDzoom, imgIDmask, isHorizontal ]
+            [9, 0, 9, false], // isabel
+            [3, 0, 3, false], // flores
+            [2, 1, 1, false], // cel
+            [7, 0, 7, true], // labios rojos
+            [8, 0, 8, true], // ojos
+            [5, 4, 4, false], // modelo 1
+            [6, 0, 0, true], // labios azules
+            [10, 0, 0, true] // modelo 0
+        ]
+    } else {
+        imagesIds = [
+            [9, 0, 9, false], // isabel
+            [3, 0, 3, false], // flores
+            [7, 0, 7, true], // labios rojos
+            [2, 1, 1, false], // cel
+            [5, 4, 4, false], // modelo 1
+            [8, 0, 8, true], // ojos
+            [6, 0, 0, true], // labios azules
+            [10, 0, 0, true] // modelo 0
+        ]
+    }
     const isWebp:boolean = document.documentElement.classList.contains("webp")
 
     imagesIds.forEach(image=>{
@@ -65,6 +81,12 @@ class RetouchPhoto {
                 img.loading = "lazy"
                 img.oncontextmenu = e=>e.preventDefault()
                 img.ondragstart = e=>e.preventDefault()
+                if(this.isFullSize) img.onload = e=>{
+                    const initialWidth = (<HTMLImageElement>e.target).width + 38
+                    const initialHeight = (<HTMLImageElement>e.target).height
+                    const targetHeight = rpWrapper.clientHeight
+                //     rpWrapper.style.width = width.toString() + "px"
+                }
     
             const rpBefore = document.createElement("div")
             rpContent.appendChild(rpBefore)
@@ -97,7 +119,7 @@ class RetouchPhoto {
             inputSlider.classList.add("slider-input")
             inputSlider.type = "range"
             inputSlider.min = "0"
-            inputSlider.max = "99.5"
+            inputSlider.max = "100"
             inputSlider.value = "50"
             inputSlider.oninput = e=>this.sliderOnInput(e.target as HTMLInputElement)
             inputSlider.onmousedown = e=>this.sliderOnMouseDown(e.target as HTMLInputElement)
@@ -243,20 +265,15 @@ class RetouchPhoto {
                 document.body.classList.remove("no-scroll")
             }
         }
+        divFullSize.tabIndex = 0
+        divFullSize.onkeydown = e=>{if(e.key==="Escape")(<HTMLElement>e.currentTarget).remove()}
 
-        const fullsizeImageOBJ = new RetouchPhoto(this.imgID, this.imgIDzoom, this.imgIDmask, this.isWebp, this.isHorizontal, true)
-        const fullsizeImage = fullsizeImageOBJ.makeRPWrapper()
-        divFullSize.appendChild(fullsizeImage)
+        const rpWrapperOBJ = new RetouchPhoto(this.imgID, this.imgIDzoom, this.imgIDmask, this.isWebp, this.isHorizontal, true)
+        const rpWrapper = rpWrapperOBJ.makeRPWrapper()
+        divFullSize.appendChild(rpWrapper)
 
         body_content.appendChild(divFullSize)
-
-        /* prueba */
-        // const divazo = document.createElement("div")
-        // divazo.classList.add("divazo")
-        // divazo.appendChild(fullsizeImage)
-        // divFullSize.appendChild(divazo)
-        // body_content.appendChild(divFullSize)
-        /* prueba */        
+        divFullSize.focus()
     }
 
     private sliderOnInput(target:HTMLInputElement):void {
@@ -264,7 +281,7 @@ class RetouchPhoto {
         const before = target.parentNode!.children[1] as HTMLInputElement   
         const value = target.value + "%"
 
-        line.style.left = value
+        line.style.left = `calc(${value} - 1.5px)`
         before.style.width = value
     }
 

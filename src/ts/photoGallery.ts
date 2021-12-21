@@ -1,5 +1,5 @@
 function photoGallery() {
-    if(!document.getElementById("body-fotografia")) return;
+    if(document.body.id !== "body-fotografia") return;
     
     const principalImages:number[] = [
         1,  // pinkblue H
@@ -64,10 +64,13 @@ function photoGallery() {
             e.currentTarget.remove()
             document.body.classList.remove("no-scroll")
         }
+        imgContainer.tabIndex = 0
+        imgContainer.onkeydown = e=>{if(e.key==="Escape")(<HTMLElement>e.currentTarget).remove()}
         imgContainer.appendChild(picture)
 
         document.body.classList.add("no-scroll")
         contentDiv!.appendChild(imgContainer)
+        imgContainer.focus()
     }
 
     function loadImageColumns() {

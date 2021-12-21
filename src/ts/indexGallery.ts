@@ -1,5 +1,5 @@
 function indexGallery() {
-    if(!document.getElementById("index-body")) return;
+    if(document.body.id !== "index-body") return;
     
     const totalVimages = 21
     const totalHimages = 21
