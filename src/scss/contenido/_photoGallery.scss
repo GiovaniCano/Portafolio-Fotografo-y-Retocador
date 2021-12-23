@@ -4,7 +4,6 @@
     max-width: 2000px;
     margin: 0 auto;
     padding: .3rem;
-    padding-bottom: 4rem;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     @include m.tablet {
@@ -41,7 +40,9 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        outline: none;
         z-index: 99;
+        
         img {
             width: auto;
             height: auto;

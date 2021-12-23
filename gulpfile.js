@@ -106,12 +106,12 @@ function imgFotoIndexHC(done) { //small vertical
 function imgRetoque(done) {
     src( paths.srcRet )
         .pipe( plumber() )
-        .pipe( imageResize({
-            width : 600,
-            crop : false,
-            upscale : false,
-            imageMagick : true
-        }) )
+        // .pipe( imageResize({
+        //     width : 600,
+        //     crop : false,
+        //     upscale : false,
+        //     imageMagick : true
+        // }) )
         .pipe( imagemin() )
         .pipe( dest( paths.destRet ) ) //jpg
         .pipe( webp() )
@@ -152,6 +152,7 @@ function watchFiles(done) {
 }
 
 exports.img = series(imgFotoBig, imgFotoMedium, imgFotoIndexV, imgFotoIndexHC, imgRetoque)
+exports.imgRetoqueUpdate = imgRetoque
 
 exports.css = css
 exports.js = js

@@ -9,6 +9,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 90;
 
     #header-content {
         display: flex;
@@ -27,6 +28,9 @@ header {
             @include m.fold {
                 font-size: 3.4rem;
             }
+            a {                
+                transition: color .5s ease;
+            }
         }        
         svg {
             width: 4rem;
@@ -34,7 +38,7 @@ header {
             cursor: pointer;
             stroke: #ffffff;
             user-select: none;
-            &:hover{stroke: #ff6060;}
+            &:hover{stroke: v.$mainColorHover;}
 
             @include m.fold {
                 margin: .7rem 0;
@@ -56,7 +60,7 @@ header {
             @include m.custom(813px) {
                 margin: 0;
                 padding-left: 6rem; //used to force the row wrap
-                display: inherit;
+                display: inherit !important;
             }
         }
     }
@@ -74,6 +78,8 @@ footer {
     background-color: v.$mainColor;
     color: white;
     padding-top: 1.2rem;
+    margin-top: 3rem;
+    box-shadow: 0 -3px 7px 1px rgba(0, 0, 0, 0.36);
 
     #footer-content {
         p { margin: 0; }
