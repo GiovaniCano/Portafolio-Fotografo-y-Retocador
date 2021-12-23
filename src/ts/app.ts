@@ -1,8 +1,8 @@
 console.log("Desarrollador: "+"https://github.com/GiovaniCano")
 
 document.addEventListener("DOMContentLoaded", function(){    
-    indexGallery()
+    home()
     headerMenu()
-    photoGallery()
+    fotografia()
     retoque()
 })
