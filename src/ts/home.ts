@@ -1,4 +1,4 @@
-function indexGallery() {
+function home() {
     if(document.body.id !== "index-body") return;
     
     const totalVimages = 21

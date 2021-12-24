@@ -1,4 +1,4 @@
-function photoGallery() {
+function fotografia() {
     if(document.body.id !== "body-fotografia") return;
     
     const principalImages:number[] = [
