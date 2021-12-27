@@ -113,6 +113,7 @@
                 transition: stroke .4s ease;
                 box-shadow: 4px 4px 9px 1px rgba(0, 0, 0, 0.5);
                 width: 4.8rem;
+                outline: none;
                 @include m.laptop {
                     width: 3.8rem;
                     border-left: 0;

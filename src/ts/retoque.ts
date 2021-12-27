@@ -1,3 +1,5 @@
+declare const tippy: any;
+
 function retoque() {
     if(document.body.id !== "body-retoque") return;
 
@@ -184,7 +186,8 @@ class RetouchPhoto {
         divIcons.innerHTML = iconsHtml
         
         const allIcons = divIcons.querySelectorAll("svg")
-        allIcons.forEach(icon=>icon.onclick = e=>{
+        allIcons.forEach(icon=>{
+            icon.onclick = e=>{
                 const target = e.currentTarget as HTMLElement
                 const rpWrapper = target.parentNode!.parentNode! as HTMLElement
 
@@ -192,7 +195,7 @@ class RetouchPhoto {
                 let img = rpWrapper.querySelector(".rp-picture img") as HTMLImageElement
                 let divBefore = rpWrapper.querySelector(".rp-before") as HTMLElement
                 
-            /* Active */
+                /* Active */
                 if(!target.classList.contains("icon-maximize")) {
                     target.classList.toggle("icon-active")
                 }
@@ -205,7 +208,7 @@ class RetouchPhoto {
                     if(maskIcon) maskIcon.classList.remove("icon-active")
                 }
                 
-            /* Zoom */
+                /* Zoom */
                 if(target.classList.contains("icon-zoom")) {        
                     let imgToShow:number
                     if(target.classList.contains("icon-active")) {
@@ -218,7 +221,7 @@ class RetouchPhoto {
                     divBefore!.style.backgroundImage = `url(/build/img/retoque/${imgToShow}-b.${this.bgExt})`
                 }
 
-            /* Brush / mask */
+                /* Brush / mask */
                 if(target.classList.contains("icon-brush")) {        
                     let imgToShow:number
                     let imgType:string
@@ -234,18 +237,45 @@ class RetouchPhoto {
                     divBefore!.style.backgroundImage = `url(/build/img/retoque/${imgToShow}-${imgType}.${this.bgExt})`
                 }
 
-            /* Maximize / Fullsize */
+                /* Maximize / Fullsize */
                 if(target.classList.contains("icon-maximize")) {
                     this.fullsize()
                 }
 
-            /* Minimize / close */
+                /* Minimize / close */
                 if(target.classList.contains("icon-minimize")) {
                     document.getElementsByClassName("fullsize-image")[0].remove()
                     document.body.classList.remove("no-scroll")
                 }
             }
-        )
+
+            /* tippy.js */
+            let content:string = ""
+            switch (true) {
+                case icon.classList.contains("icon-maximize"):
+                    content = "Pantalla Completa"
+                    break;
+                case icon.classList.contains("icon-brush"):
+                    content = "Máscara D&B"
+                    break;
+                case icon.classList.contains("icon-zoom"):
+                    content = "Zoom"
+                    break;
+                case icon.classList.contains("icon-minimize"):
+                    content = "Salir de Pantalla Completa"
+                    break;
+                default:
+                    break;
+            }
+            let placement:string = "bottom-start"
+            if(window.innerWidth >= 1025) placement = "right"            
+            tippy(icon, {
+                content: content,
+                placement: placement,
+                theme: 'customTheme',
+                animation: "shift-away"
+            });
+        })
 
         return rpWrapper;
     }
