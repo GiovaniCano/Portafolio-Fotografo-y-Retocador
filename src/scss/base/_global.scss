@@ -130,3 +130,20 @@ nav {
 .no-scroll {
     overflow: hidden !important;
 }
+
+.button {
+    margin-top: 2rem;
+    padding: .65rem;
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background-color: v.$mainColor;
+    color: white;
+    border-radius: .6rem;
+    &:hover {
+        background-color: lighten($color: v.$mainColor, $amount: 5);
+    }
+}

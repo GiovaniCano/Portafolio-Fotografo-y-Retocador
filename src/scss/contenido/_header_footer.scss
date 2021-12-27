@@ -2,7 +2,7 @@
 @use "base/mixins" as m;
 
 header {
-    background-color: v.$mainColor;
+    background-color: lighten($color: v.$mainColor, $amount: 2.2);
     backdrop-filter: blur(6px);
     box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.35);
     color: white;
@@ -68,9 +68,6 @@ header {
 header, #headerFill {    
     min-height: 12.85rem;
     @include m.custom(411px) {min-height: 7rem;}
-}
-#headerFill {
-    background-color: grey;
 }
 
 /* FOOTER */
