@@ -1,0 +1,130 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+header {
+    background-color: lighten($color: v.$mainColor, $amount: 2.2);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.35);
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 90;
+
+    #header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 1rem 2rem;
+        @include m.custom(411px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            margin: 0;
+            @include m.fold {
+                font-size: 3.4rem;
+            }
+            a {                
+                transition: color .5s ease;
+            }
+        }        
+        svg {
+            width: 4rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            stroke: #ffffff;
+            user-select: none;
+            &:hover{stroke: v.$mainColorHover;}
+
+            @include m.fold {
+                margin: .7rem 0;
+            }
+            @include m.custom(411px) {
+                margin: 0;
+            }
+            @include m.custom(813px) {
+                display: none;
+            }
+        }
+        nav {
+            width: 48rem;
+            padding: .8rem 0;
+            
+            @include m.tablet  {
+                margin: 0 auto;
+            }
+            @include m.custom(813px) {
+                margin: 0;
+                padding-left: 6rem; //used to force the row wrap
+                display: inherit !important;
+            }
+        }
+    }
+}
+header, #headerFill {    
+    min-height: 12.85rem;
+    @include m.custom(411px) {min-height: 7rem;}
+}
+
+/* FOOTER */
+footer {
+    background-color: v.$mainColor;
+    color: white;
+    padding-top: 1.2rem;
+    margin-top: 3rem;
+    box-shadow: 0 -3px 7px 1px rgba(0, 0, 0, 0.36);
+
+    #footer-content {
+        p { margin: 0; }
+        &>div {
+            &:not(:last-of-type) {
+                margin-bottom: 2rem;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid rgba(248, 248, 248, 0.2);
+            }
+            &:nth-of-type(1) { // info
+                display: flex;
+                justify-content: space-around;
+                flex-direction: column;
+                align-items: center;
+                @include m.laptop {
+                    flex-direction: row;
+                }
+
+                div {
+                    display: flex;
+                    margin-bottom: 1rem;
+                    width: 26.4rem;
+                    @include m.laptop {
+                        margin-bottom: 0;
+                    }
+                    
+                    p {
+                        margin-left: 1.5rem;
+                    }
+                }
+            }
+            &:nth-of-type(2) { // copyright
+                text-align: center;
+                p {
+                    margin-bottom: 1.5rem;
+                    @include m.tablet {
+                        margin-bottom: .8rem;
+                    }
+                }
+            }
+            &:nth-of-type(3) { // developer
+                p{font-size: 1.8rem;}
+                a{text-decoration: underline;}
+                text-align: center;
+                @include m.laptop {
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

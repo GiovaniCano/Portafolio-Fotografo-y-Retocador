@@ -1,0 +1,153 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+/* 10px = 1rem */
+html { font-size: 62.5%; box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+body{ 
+    font-size: 16px;
+    font-family: v.$font;
+    background-color: rgb(35, 35, 35);
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin: 0 0 2rem 0;
+}
+h1 {
+    font-size: 4.2rem;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+}
+h2 {
+    font-size: 3.5rem;
+}
+h3 {
+    font-size: 2.9rem;
+}
+p, li {
+    font-size: 2.1rem;
+    letter-spacing: 0.4px;
+    line-height: 125%;
+}
+
+p { margin: 1.4rem 0; }
+a {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    &:hover {
+        color: rgb(255, 96, 96);
+    }
+}
+img {
+    display: block;
+    width: 100%;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 2rem 0;
+    max-width: 1200px;
+    width: 97%;
+}
+.centered {
+    margin: 0 auto;
+}
+
+nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include m.tablet {
+        width: 50%;
+        flex-direction: row;
+    }
+
+    a {
+        text-align: center;
+        font-size: 2.2rem;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+            @include m.tablet {
+                margin-bottom: 0;
+            }
+        }
+
+        &:hover, &#active-section {
+            font-weight: bold;
+            color: v.$mainColorHover;
+        }
+
+        &:before {
+            display: block;
+            content: attr(data-hover);
+            font-weight: 700;
+            height: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+#noscript-alert {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(48, 45, 2, 0.795);
+    backdrop-filter: blur(3px);
+    padding: 1.5rem;
+    text-align: center;
+    z-index: 99;
+    p {
+        margin: 0;
+        font-size: 2.2rem;
+        color: rgb(233, 233, 15);
+    }
+    @include m.laptop {
+        // padding: .5rem;
+    }
+}
+
+.font-number {
+    font-family: serif;
+    letter-spacing: 1.4px;
+}
+
+.hidden {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden !important;
+}
+.transparent {
+    opacity: 0 !important;
+}
+
+.no-scroll {
+    overflow: hidden !important;
+}
+
+.button {
+    margin-top: 2rem;
+    padding: .65rem;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background-color: v.$mainColor;
+    color: white;
+    outline: 1px solid rgba(133, 98, 98, 0.267);;
+    border-radius: .3rem;
+    transition: background-color .3s ease;
+    transition: color .5s ease;
+    &:hover {
+        background-color: lighten($color: v.$mainColor, $amount: 2);
+        color: v.$mainColorHover;
+        outline: 1px solid rgba(255, 126, 126, 0.267);
+    }
+}

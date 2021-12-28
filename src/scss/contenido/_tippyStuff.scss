@@ -1,0 +1,19 @@
+@use "base/variables" as v;
+
+.tippy-box[data-theme~='customTheme'] {
+    background-color: v.$mainColor;
+    color: white;
+    font-size: 1.9rem;
+}
+.tippy-box[data-theme~='customTheme'][data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: v.$mainColor;
+}
+.tippy-box[data-theme~='customTheme'][data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: v.$mainColor;
+}
+.tippy-box[data-theme~='customTheme'][data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: v.$mainColor;
+}
+.tippy-box[data-theme~='customTheme'][data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: v.$mainColor;
+}

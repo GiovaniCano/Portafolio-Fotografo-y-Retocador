@@ -1,0 +1,84 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+#index-body {
+    overflow: hidden;
+    min-height: 100vh;
+    position: relative;
+
+    background-color: rgb(24, 24, 24);
+    animation: galleryBgColor .8s;
+    animation-timing-function: cubic-bezier(0.55, 0.06, 0.68, 0.19);
+    @keyframes galleryBgColor {
+        from{background-color: rgb(202, 33, 33);}
+        to {background-color: rgb(24, 24, 24);}
+    }
+
+    #index-overlay {
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.33);
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        #index-tittle {
+            width: 100%;
+            color: white;
+            padding: 2rem;
+            background-color: v.$mainColor;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 6px 12px 4px rgba(0, 0, 0, 0.35);
+
+            h1 { 
+                font-size: 5rem;
+                margin-bottom: 1rem;
+                @include m.tablet() {
+                    margin-bottom: 2rem;
+                    font-size: 5rem;
+                }
+                @include m.fold {
+                    font-size: 220%;
+                }
+            }
+            nav {
+                @include m.custom(540px) {
+                    width: 48rem;                  
+                }
+                a {
+                    font-size: 2.7rem;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+
+    #index-gallery {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        @include m.tablet {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @include m.laptop {
+            grid-template-columns: repeat(6, 1fr);
+        }
+        @include m.desktop {
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        img {
+            animation: imagePadding .8s;
+            animation-timing-function: linear;
+            @keyframes imagePadding {
+                from {padding: 1rem;}
+                to {padding: 0rem;}
+            }
+        }
+    }
+}
