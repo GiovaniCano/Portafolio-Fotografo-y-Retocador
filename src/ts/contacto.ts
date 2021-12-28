@@ -1,11 +1,11 @@
 function contacto() {    
     if(document.body.id !== "body-contacto") return;
 
-    //evento submit aqui
-
-        /* validacion */
-
-        /* enviar a formsubmit por fetch api */
-
-        //mensajes de envio exitoso o fallido
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if(urlParams.get("s")) {
+        const alerta = document.getElementById("form-sent-alert")
+        alerta!.classList.remove("hidden")
+        setTimeout(() =>alerta!.classList.add("hidden"), 4500);
+    }
 }

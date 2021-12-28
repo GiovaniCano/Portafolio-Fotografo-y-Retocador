@@ -66,4 +66,20 @@
             }
         }
     }
+
+    #form-sent-alert {
+        background-color: v.$mainColor;
+        background-color: rgb(23, 61, 23);
+        padding: 1rem;
+        border-radius: .6rem;
+        margin: 1.5rem auto -1.5rem auto;
+        width: 95%;
+        max-width: 50rem;
+        color: white;
+
+        p{
+            margin: 0;
+            text-align: center;
+        }
+    }
 }
