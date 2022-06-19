@@ -98,9 +98,14 @@ footer {
                 div {
                     display: flex;
                     margin-bottom: 1rem;
-                    width: 26.4rem;
+                    // width: 26.4rem;
                     @include m.laptop {
                         margin-bottom: 0;
+                    }
+                    @include m.fold() {
+                        p {
+                            font-size: 6vw;
+                        }
                     }
                     
                     p {
